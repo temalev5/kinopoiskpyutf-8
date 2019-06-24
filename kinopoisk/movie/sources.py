@@ -74,7 +74,7 @@ class MoviePremierLink(KinopoiskPage):
         else:
             content_soup = BeautifulSoup(self.content, 'html.parser')
             premier_soup = content_soup.find('div', {'class': 'premier_item'})
-
+        #print(str(premier_soup))
         title_soup = premier_soup.find('span', {'class': 'name_big'}) or premier_soup.find('span', {'class': 'name'})
 
         self.instance.id = self.prepare_int(premier_soup['id'])
@@ -198,7 +198,7 @@ class MovieMainPage(KinopoiskPage):
 
     xpath = {
         'url': './/meta[@property="og:url"]/@content',
-        'title': './/h1/text()',
+        'title': './/h1/span/text()',
         'title_en': './/span[@itemprop="alternativeHeadline"]/text()',
         'plot': './/div[@itemprop="description"]/text()',
         'rating': './/span[@class="rating_ball"]/text()',
